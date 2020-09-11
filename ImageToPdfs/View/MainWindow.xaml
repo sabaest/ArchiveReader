@@ -1,0 +1,60 @@
+﻿<Window x:Class="ImageToPdfs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dd="urn:gong-wpf-dragdrop"
+        xmlns:vm="clr-namespace:ImageToPdfs.ViewModel"
+        xmlns:b="clr-namespace:ImageToPdfs.View.Behaviors"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="289.5" Width="800"
+        Background="DarkGray">
+
+    <Window.DataContext>
+        <vm:Conv/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource/DefaultButton.xaml"/>
+                <ResourceDictionary Source="/Resource/DataPieceGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Name="Base" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+          FocusManager.FocusedElement="{Binding ElementName=Base}"
+          dd:DragDrop.IsDropTarget="{Binding IsDrag.Value}" dd:DragDrop.DropHandler="{Binding}" >
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Margin="10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="PDF作成" Style="{StaticResource DefaultButton}" Command="{Binding ButtonStart}" />
+            <Button Grid.Column="1" Content="全削除" Style="{StaticResource DefaultButton}" Command="{Binding ButtonRemoveAll}" />
+        </Grid>
+
+        <ListView Grid.Row="1" Name="lview"
+                  SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled" AllowDrop="True" 
+                  ItemsSource="{Binding DataPieces, UpdateSourceTrigger=PropertyChanged}"
+                  Style="{StaticResource DataPieceGrid}" >
+
+            <i:Interaction.Behaviors>
+                <b:ListViewBehavior />
+            </i:Interaction.Behaviors>
+
+        </ListView>
+    </Grid>
+</Window>

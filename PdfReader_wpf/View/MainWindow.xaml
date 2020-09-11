@@ -1,0 +1,104 @@
+﻿<Window x:Class="PdfReader_wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dd="urn:gong-wpf-dragdrop"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:c="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+        xmlns:b="clr-namespace:PdfReader_wpf.View.Behavior"
+        mc:Ignorable="d"
+        Title="{Binding Filename.Value}"
+        WindowState="{Binding WindowState}"
+        Background="DimGray"
+        SnapsToDevicePixels="True"
+        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+        dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding}" 
+        Icon="/PdfReader_wpf;component/Resource/icon_g_64.ico" >
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource/SidePanelGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <c:CallMethodAction TargetObject="{Binding .}" MethodName="Closed" ></c:CallMethodAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseRightButtonUp">
+            <c:CallMethodAction TargetObject="{Binding .}" MethodName="MouseRightButtonUp" ></c:CallMethodAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="PreviewMouseDown">
+            <c:CallMethodAction TargetObject="{Binding .}" MethodName="PreviewMouseDown" ></c:CallMethodAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="PreviewMouseUp">
+            <c:CallMethodAction TargetObject="{Binding .}" MethodName="PreviewMouseUp" ></c:CallMethodAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseMove">
+            <c:CallMethodAction TargetObject="{Binding .}" MethodName="MouseMove" ></c:CallMethodAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseDoubleClick">
+            <c:CallMethodAction TargetObject="{Binding .}" MethodName="MouseDoubleClick" ></c:CallMethodAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Name="Base" >
+        
+        <!--SidePanel-->
+        <StackPanel Orientation="Horizontal" Panel.ZIndex="1">
+            <TextBlock x:Name="test" 
+                        Text="   Image List   " Background="White" 
+                        HorizontalAlignment="Left" VerticalAlignment="Top" >
+                <TextBlock.LayoutTransform>
+                    <RotateTransform Angle="90"/>
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <ScrollViewer Name="side" Visibility="Hidden" Width="220">
+                <ListView Name="lview" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                            Style="{StaticResource SidePanelGrid}">
+                    <i:Interaction.Behaviors>
+                        <b:ListViewBehavior/>
+                    </i:Interaction.Behaviors>
+                </ListView>
+                <i:Interaction.Behaviors>
+                    <b:ScrollViewerBehavior />
+                </i:Interaction.Behaviors>
+            </ScrollViewer>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <ei:ChangePropertyAction TargetName="side" 
+                                            PropertyName="Visibility" Value="Visible">
+                    </ei:ChangePropertyAction>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeave">
+                    <ei:ChangePropertyAction TargetName="side" 
+                                            PropertyName="Visibility" Value="Hidden">
+                    </ei:ChangePropertyAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+                
+        </StackPanel>
+
+        <!--Viewer-->
+        <ScrollViewer Name="sviewer"
+                      CanContentScroll="True"
+                      VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" >
+        
+            <Image Source="{Binding Source.Value}" 
+                   Height="{Binding Source.Value.Height}" Width="{Binding Source.Value.Width}" >
+                <Image.LayoutTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Scale.Value}" ScaleY="{Binding Scale.Value}" />
+                    </TransformGroup>
+                </Image.LayoutTransform>
+            </Image>
+        </ScrollViewer>
+
+    </Grid>
+
+</Window>

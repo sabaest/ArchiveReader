@@ -1,0 +1,10 @@
+﻿<Application x:Class="PdfReader_wpf.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PdfReader_wpf"
+             StartupUri="View/MainWindow.xaml"
+             Startup="Application_Startup">
+    <Application.Resources>
+
+    </Application.Resources>
+</Application>

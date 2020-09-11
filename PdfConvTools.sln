@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveReader", "PdfReader_wpf\ArchiveReader.csproj", "{41C79CF0-25FF-4533-9C13-4B2F8A212C59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageToPdfs", "ImageToPdfs\ImageToPdfs.csproj", "{950CB5E5-230B-4429-8BD6-F31D144DF759}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41C79CF0-25FF-4533-9C13-4B2F8A212C59}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{41C79CF0-25FF-4533-9C13-4B2F8A212C59}.Debug|Any CPU.Build.0 = Debug|x64
+		{41C79CF0-25FF-4533-9C13-4B2F8A212C59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41C79CF0-25FF-4533-9C13-4B2F8A212C59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{950CB5E5-230B-4429-8BD6-F31D144DF759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{950CB5E5-230B-4429-8BD6-F31D144DF759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {302C0D99-64BB-467C-B7BD-D4A27D6EC0D3}
+	EndGlobalSection
+EndGlobal
